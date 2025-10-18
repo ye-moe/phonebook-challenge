@@ -20,6 +20,48 @@ const FALLBACK_CONTACTS = [
         phone: "(555) 010-0103",
         email: "grace@example.com",
     },
+    {
+        id: 4,
+        name: "John Doe",
+        phone: "(555) 010-0104",
+        email: "john.doe@example.com",
+    },
+    {
+        id: 5,
+        name: "Jane Doe",
+        phone: "(555) 010-0105",
+        email: "jane.doe@example.com",
+    },
+    {
+        id: 6,
+        name: "Franz Kafka",
+        phone: "(555) 010-0106",
+        email: "franz.kafka@example.com",
+    },
+    {
+        id: 7,
+        name: "Clarice Lispector",
+        phone: "(555) 010-0107",
+        email: "clarice.lispector@example.com",
+    },
+    {
+        id: 8,
+        name: "Albert Camus",
+        phone: "(555) 010-0108",
+        email: "albert.camus@example.com",
+    },
+    {
+        id: 9,
+        name: "Sabahattin Ali",
+        phone: "(555) 010-0109",
+        email: "sabahattin.ali@example.com",
+    },
+    {
+        id: 10,
+        name: "Ye Moe",
+        phone: "(555) 010-0110",
+        email: "ye.moe@example.com",
+    },
 ];
 
 const App = () => {
@@ -68,6 +110,34 @@ const App = () => {
 
             <section className="contacts" aria-labelledby="contacts-heading">
                 <h2 id="contacts-heading">Contacts</h2>
+
+                <ul className="contacts__grid" role="list">
+                    {contacts.map((c) => (
+                        <li key={c.id}>
+                            <article className="contact-card">
+                                <header>
+                                    <h3 className="contact-card__name">{c.name}</h3>
+                                </header>
+                                {c.photo && (
+                                    <img
+                                        src={c.photo}
+                                        alt={`Picture of ${c.name}`}
+                                        width="96"
+                                        height="96"
+                                        loading="lazy"
+                                        style={{borderRadius:"50%", display:"block", marginBlock:"0.5rem"}}
+                                    />
+                                )}
+                                <p className="contact-card__phone">
+                                    <strong>Phone:</strong> <a href={`tel:${c.phone}`}>{c.phone}</a>
+                                </p>
+                                <p className="contact-card__email">
+                                    <strong>Email:</strong> <a href={`mailto:${c.email}`}>{c.email}</a>
+                                </p>
+                            </article>
+                        </li>
+                    ))}
+                </ul>
             </section>
 
             <section className="form" aria-labelledby="form-heading">
