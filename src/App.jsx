@@ -120,6 +120,7 @@ const App = () => {
                                 </header>
                                 {c.photo && (
                                     <img
+                                        className="avater"
                                         src={c.photo}
                                         alt={`Picture of ${c.name}`}
                                         width="96"
