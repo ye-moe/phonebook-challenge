@@ -146,7 +146,9 @@ h2 {
     padding: var(--space-3);
     box-shadow: var(--shadow);
     display: grid;
-    gap: 0.5rem;
+    /* two-column layout: avatar + content */
+    grid-template-columns: 96px 1fr;
+    gap: 0.75rem;
     transition:
         transform 0.15s ease,
         background 0.15s ease,
@@ -168,13 +170,25 @@ h2 {
     color: #aaa;
 }
 
-.contact-card img.avatar,
-.contact-card img {
+.contact-card img.avatar {
     border-radius: 50%;
     display: block;
     width: 96px;
     height: 96px;
     box-shadow: 0 2px 10px rgba(45, 51, 107, 0.18);
+    object-fit: cover;
+}
+
+/* On small screens stack avatar above content */
+@media (max-width: 520px) {
+    .contact-card {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        text-align: left;
+    }
+    .contact-card img.avatar {
+        margin-inline: auto;
+    }
 }
 
 .form {
@@ -249,4 +263,23 @@ a:hover {
 label,
 .contact-card strong {
     color: var(--text);
+}
+
+/* ==== Pagination color fix for dark background ==== */
+.MuiPagination-root {
+  color: var(--text);
+}
+
+.MuiPaginationItem-root {
+  color: #ffffff !important;           /* unselected pages */
+  border-color: var(--border);
+}
+
+.MuiPaginationItem-root.Mui-selected {
+  background-color: var(--brand) !important; /* selected page color */
+  color: #fff !important;
+}
+
+.MuiPaginationItem-root:hover {
+  background-color: color-mix(in oklab, var(--brand) 40%, transparent) !important;
 }
