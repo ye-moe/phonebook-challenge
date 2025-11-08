@@ -68,7 +68,6 @@ const validateForm = (form) => {
 const highlightMatch = (text, query) => {
     if (!query) return text; 
     
-    const index = text.toLowerCase().indexOf(query.toLowerCase()); 
     if (index === -1) return text;
     
     const before = text.slice(0, index);
@@ -93,14 +92,14 @@ export default function App() {
     const [formErrors, setFormErrors] = useState({});
     const [isAdding, setIsAdding] = useState(false);
 
-    // Fetch contacts from JSON file
+    // Fetching contacts from JSON file
     useEffect(() => {
         const fetchContacts = async () => {
             try {
                 setLoading(true);
                 setError(null);
                 
-                // Try to load from localStorage first
+                // Trying to load from localStorage first
                 const stored = localStorage.getItem("phonebook_contacts");
                 if (stored) {
                     const parsed = JSON.parse(stored);
@@ -109,7 +108,7 @@ export default function App() {
                     return;
                 }
                 
-                // Fetch from JSON file
+                // Fetching from JSON file
                 const response = await fetch("/data/contacts.json");
                 if (!response.ok) {
                     throw new Error("Failed to fetch contacts");
@@ -117,7 +116,7 @@ export default function App() {
                 
                 const data = await response.json();
                 
-                // Add photos to fetched contacts
+                // Adding photos to fetched contacts
                 const photosMap = { ada, alan, grace, john, jane };
                 const contactsWithPhotos = data.map((contact, idx) => ({
                     ...contact,
@@ -128,8 +127,7 @@ export default function App() {
                 localStorage.setItem("phonebook_contacts", JSON.stringify(contactsWithPhotos));
             } catch (err) {
                 console.error("Fetch error:", err);
-                setError("Could not load contacts. Using fallback data.");
-                setContacts(FALLBACK_CONTACTS);
+                setError("Could not load contacts.");
             } finally {
                 setLoading(false);
             }
@@ -138,14 +136,14 @@ export default function App() {
         fetchContacts();
     }, []);
 
-    // Save to localStorage whenever contacts change
+    // Saving to localStorage
     useEffect(() => {
         if (contacts.length > 0 && !loading) {
             localStorage.setItem("phonebook_contacts", JSON.stringify(contacts));
         }
     }, [contacts, loading]);
 
-    // Filter contacts based on search query
+    // Filter contacts
     const filteredContacts = contacts.filter((c) =>
         [c.name, c.phone].some((v) => 
             v.toLowerCase().includes(query.toLowerCase())
@@ -166,7 +164,7 @@ export default function App() {
         setPage(1);
     }, [query]);
 
-    // Handle form submission with validation
+    // Handle form submission
     function handleSubmit() {
         const errors = validateForm(form);
         setFormErrors(errors);
@@ -181,7 +179,6 @@ export default function App() {
             photo: john,
         };
         
-        // Add to top of list
         setContacts([newContact, ...contacts]);
         setForm({ name: "", phone: "", email: "" });
         setFormErrors({});
@@ -260,10 +257,10 @@ export default function App() {
     // Loading state
     if (loading) {
         return (
-            <div className="modern-app">
+            <div className="app">
                 <div className="bg-orb bg-orb-1"></div>
                 <div className="bg-orb bg-orb-2"></div>
-                <main className="modern-container">
+                <main className="container">
                     <div className="loading-container">
                         <div className="spinner"></div>
                         <p>Loading contacts...</p>
@@ -274,12 +271,12 @@ export default function App() {
     }
 
     return (
-        <div className="modern-app">
+        <div className="app">
             <div className="bg-orb bg-orb-1"></div>
             <div className="bg-orb bg-orb-2"></div>
 
-            <main className="modern-container">
-                <header className="modern-header">
+            <main className="container">
+                <header className="header">
                     <div className="hero-icon">
                         <svg
                             width="40"
@@ -296,8 +293,8 @@ export default function App() {
                             />
                         </svg>
                     </div>
-                    <h1 className="modern-title">Phonebook</h1>
-                    <p className="modern-subtitle">Your modern contact directory</p>
+                    <h1 className="title">Phonebook Challenge</h1>
+                    <p className="subtitle">Build a simple contact directory</p>
                 </header>
 
                 {/* Error message */}
@@ -335,7 +332,7 @@ export default function App() {
                             placeholder="Search contacts by name or phone..."
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            className="modern-search"
+                            className="search"
                         />
                     </div>
                     <p className="search-results">
@@ -362,7 +359,7 @@ export default function App() {
 
                 {isAdding && (
                     <section className="form-section">
-                        <div className="modern-form">
+                        <div className="form">
                             <div className="form-grid">
                                 <div className="form-field">
                                     <label htmlFor="name">Name *</label>
@@ -376,7 +373,7 @@ export default function App() {
                                                 setFormErrors({ ...formErrors, name: undefined });
                                             }
                                         }}
-                                        className={`modern-input ${formErrors.name ? "error" : ""}`}
+                                        className={`input ${formErrors.name ? "error" : ""}`}
                                     />
                                     {formErrors.name && (
                                         <span className="error-message">{formErrors.name}</span>
@@ -395,7 +392,7 @@ export default function App() {
                                                 setFormErrors({ ...formErrors, phone: undefined });
                                             }
                                         }}
-                                        className={`modern-input ${formErrors.phone ? "error" : ""}`}
+                                        className={`input ${formErrors.phone ? "error" : ""}`}
                                     />
                                     {formErrors.phone && (
                                         <span className="error-message">{formErrors.phone}</span>
@@ -414,7 +411,7 @@ export default function App() {
                                             setFormErrors({ ...formErrors, email: undefined });
                                         }
                                     }}
-                                    className={`modern-input ${formErrors.email ? "error" : ""}`}
+                                    className={`input ${formErrors.email ? "error" : ""}`}
                                 />
                                 {formErrors.email && (
                                     <span className="error-message">{formErrors.email}</span>
@@ -435,7 +432,7 @@ export default function App() {
                         {currentContacts.map((contact, index) => (
                             <li
                                 key={contact.id}
-                                className="modern-card"
+                                className="card"
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <div className="card-content">
@@ -443,7 +440,7 @@ export default function App() {
                                         <img
                                             src={contact.photo}
                                             alt={`Portrait of ${contact.name}`}
-                                            className="modern-avatar"
+                                            className="avatar"
                                         />
                                         <div className="status-indicator"></div>
                                     </div>
@@ -502,8 +499,8 @@ export default function App() {
                     {renderPagination()}
                 </section>
 
-                <footer className="modern-footer">
-                    <p>Modern Phonebook Application • {new Date().getFullYear()}</p>
+                <footer className="footer">
+                    <p>Phonebook Challenge • {new Date().getFullYear()}</p>
                 </footer>
             </main>
         </div>

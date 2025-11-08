@@ -1,6 +1,5 @@
-/* Modern Phonebook Styles */
 
-.modern-app {
+.app {
     min-height: 100vh;
     background: linear-gradient(135deg, #FFFFFF 0%, #D4D4D4 50%, #B3B3B3 100%);
     color: #2B2B2B;
@@ -8,7 +7,6 @@
     overflow-x: hidden;
 }
 
-/* Animated Background Orbs */
 .bg-orb {
     position: fixed;
     border-radius: 50%;
@@ -41,7 +39,7 @@
 }
 
 /* Container */
-.modern-container {
+.container {
     position: relative;
     max-width: 1400px;
     margin: 0 auto;
@@ -50,7 +48,7 @@
 }
 
 /* Header */
-.modern-header {
+.header {
     text-align: center;
     margin-bottom: 4rem;
     animation: fadeInUp 0.6s ease-out;
@@ -69,7 +67,7 @@
     color: white;
 }
 
-.modern-title {
+.title {
     font-size: 4rem;
     font-weight: 800;
     margin: 0 0 1rem 0;
@@ -80,7 +78,7 @@
     letter-spacing: -1px;
 }
 
-.modern-subtitle {
+.subtitle {
     font-size: 1.25rem;
     color: #5A5A5A;
     margin: 0;
@@ -112,7 +110,7 @@
     color: #5A5A5A;
 }
 
-.modern-search {
+.search {
     width: 100%;
     padding: 1rem 1.5rem 1rem 3.5rem;
     background: rgba(255, 255, 255, 0.7);
@@ -125,15 +123,15 @@
     box-shadow: 0 4px 15px rgba(43, 43, 43, 0.1);
 }
 
-.modern-search::placeholder {
+.search::placeholder {
     color: #8A8A8A;
 }
 
-.modern-search:hover {
+.search:hover {
     background: rgba(255, 255, 255, 0.9);
 }
 
-.modern-search:focus {
+.search:focus {
     outline: none;
     border-color: #2B2B2B;
     box-shadow: 0 0 0 4px rgba(43, 43, 43, 0.1);
@@ -192,7 +190,7 @@
     animation: slideDown 0.4s ease-out;
 }
 
-.modern-form {
+.form {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(43, 43, 43, 0.2);
@@ -220,7 +218,7 @@
     color: #2B2B2B;
 }
 
-.modern-input {
+.input {
     padding: 0.75rem 1rem;
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(43, 43, 43, 0.2);
@@ -230,11 +228,11 @@
     transition: all 0.3s ease;
 }
 
-.modern-input::placeholder {
+.input::placeholder {
     color: #8A8A8A;
 }
 
-.modern-input:focus {
+.input:focus {
     outline: none;
     border-color: #2B2B2B;
     box-shadow: 0 0 0 3px rgba(43, 43, 43, 0.1);
@@ -280,7 +278,7 @@
     min-height: 400px;
 }
 
-.modern-card {
+.card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(43, 43, 43, 0.2);
@@ -294,7 +292,7 @@
     width: 100%;
 }
 
-.modern-card:hover {
+.card:hover {
     background: rgba(255, 255, 255, 0.9);
     border-color: rgba(43, 43, 43, 0.4);
     transform: translateY(-4px);
@@ -313,7 +311,7 @@
     position: relative;
 }
 
-.modern-avatar {
+.avatar {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -323,7 +321,7 @@
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.3);
 }
 
-.modern-card:hover .modern-avatar {
+.card:hover .avatar {
     border-color: #4A4A4A;
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(43, 43, 43, 0.4);
@@ -459,9 +457,8 @@
     }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .modern-title {
+    .title {
         font-size: 3rem;
     }
     
@@ -475,7 +472,7 @@
 }
 
 /* Footer */
-.modern-footer {
+.footer {
     text-align: center;
     padding: 2rem 0;
     color: #5A5A5A;
@@ -484,21 +481,19 @@
     margin-top: 3rem;
 }
 
-.modern-footer p {
+.footer p {
     margin: 0;
 }
 
 @media (max-width: 480px) {
-    .modern-title {
+    .title {
         font-size: 2.5rem;
     }
     
-    .modern-container {
+    .container {
         padding: 2rem 1rem;
     }
 }
-
-/* Add these styles to the bottom of your App.css file */
 
 /* Loading State */
 .loading-container {
@@ -528,7 +523,7 @@
     color: #5A5A5A;
 }
 
-/* Error Banner */
+/* Error */
 .error-banner {
     max-width: 800px;
     margin: 0 auto 2rem;
@@ -548,12 +543,12 @@
 }
 
 /* Form Validation Errors */
-.modern-input.error {
+.input.error {
     border-color: #dc2626;
     background: rgba(220, 38, 38, 0.05);
 }
 
-.modern-input.error:focus {
+.input.error:focus {
     border-color: #dc2626;
     box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
@@ -576,7 +571,7 @@
 
 /* Responsive Improvements */
 @media (max-width: 768px) {
-    .modern-avatar {
+    .avatar {
         width: 100px;
         height: 100px;
     }
@@ -601,11 +596,11 @@
 }
 
 @media (max-width: 480px) {
-    .modern-card {
+    .card {
         padding: 2rem 1.5rem;
     }
     
-    .modern-avatar {
+    .avatar {
         width: 90px;
         height: 90px;
     }
